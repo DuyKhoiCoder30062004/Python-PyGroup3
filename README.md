@@ -3,7 +3,7 @@
 
 
 
-<!------------- Lưu ý, ghi chú về cách chuyển đổi cửa sổ để mà chuyển đổi từ UI này sang UI mới để thao tác mới --->>>
+# * Lưu ý, ghi chú về cách chuyển đổi cửa sổ để mà chuyển đổi từ UI này sang UI mới để thao tác mới 
 
 import tkinter as tk
 
