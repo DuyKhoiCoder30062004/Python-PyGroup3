@@ -89,3 +89,96 @@ print(np.convolve((1,2,3),(4,5,6))) #padding kernel
 #
 #   [1,2,3]
 # [4,5]
+
+
+
+
+
+#CÁCH XỬ LÝ ẢNH KHI ÁP DỤNG REGION OF INTEREST (CÓ THAO TÁC KERNEL)
+
+# # Write Python3 code here
+#
+# import cv2
+# import numpy as np
+#
+# image = cv2.imread(r'C:\Users\HELLO\Pictures\Saved Pictures\Sonic3.PNG')
+#
+# # making filter of 3 by 3 filled with 1 divide
+# # by 9 for normalization
+# blur_filter1 = np.ones((3, 3), np.float64)/(9.0)
+#
+# # making filter of 5 by 5 filled with 1 divide
+# # by 25 for normalization
+# blur_filter2 = np.ones((5, 5), np.float64)/(25.0)
+#
+# # making filter of 7 by 7 filled with 1 divide
+# # by 49 for normalization
+# blur_filter3 = np.ones((7, 7), np.float64)/(49.0)
+#
+# image_blur1 = cv2.filter2D(image, -1, blur_filter1)
+# image_blur2 = cv2.filter2D(image, -1, blur_filter2)
+# image_blur3 = cv2.filter2D(image, -1, blur_filter3)
+#
+# cv2.imshow('geek', image)
+# cv2.imshow('geek_blur1', image_blur1)
+# cv2.imshow('geek_blur2', image_blur2)
+# cv2.imshow('geek_blur3', image_blur3)
+#
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
+#
+#
+# #convolution -> reverse array -> kernel (contains positive and negative)
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+#DJango (not sure if enough time to grasp?!) (combine : python + html/css also)
+img = cv2.imread(r'C:\Users\HELLO\Pictures\Saved Pictures\Sonic3.PNG')
+img = cv2.resize(img, (200, 200))
+img_xam = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+print(img.shape)
+print(img_xam.shape)
+
+
+#thiết kế Convolution
+class Conv2d:
+    def __init__(self, input, kernelSize):
+        self.input = input
+        self.chieu_cao, self.chieu_rong = input.shape
+        self.kernel = np.random.randn(kernelSize, kernelSize)
+    # print(kernel)
+
+        self.results = np.zeros((self.chieu_cao - kernelSize + 1, self.chieu_rong - kernelSize + 1))
+
+    def getRoi(self):
+        for row in range(0, self.chieu_cao - self.kernel.shape[0] + 1):
+            for col in range(0, self.chieu_rong - self.kernel.shape[1] + 1):
+                roi = self.input[row: row + self.kernel.shape[0], col:col + self.kernel.shape[1]]
+                yield row,col,roi
+    def operating(self):
+        for row, col, roi in self.getRoi():
+            self.results[row, col] = np.sum(roi * self.kernel)
+        # print(results, results.shape)
+    # roi : region of interest
+        return self.results
+
+conv2d = Conv2d(img_xam, 5)
+img_gray_con2d = conv2d.operating()
+plt.imshow(img_gray_con2d, cmap='gray')
+
+plt.show()
+
+
+#Neural Network , Squiggle, Hidđen layers
+
+#Dosage example
+#curved, bent lines, sigmoid function, ReLU Function
+#softplus function f(x) = log(1+e^x) (ln log e cofficient)
+#sigmoid curve : f(x) = e^x / ((e^x) +1 )
+#ReLU: f(x) = max(0,x)
+#blue curve are y - axis value
+#objective: get x axis and y axis
+#weight, bias
+#https://www.youtube.com/watch?v=CqOfi41LfDw&list=PLblh5JKOoLUIxGDQs4LFFD--41Vzf-ME1&index=2
+
