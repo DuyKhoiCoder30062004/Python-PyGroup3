@@ -170,6 +170,32 @@ plt.imshow(img_gray_con2d, cmap='gray')
 plt.show()
 
 
+
+
+
+
+
+
+
+#Kỹ thuật sử dụng Notification sử dụng MessageBox
+import tkinter as tk
+from tkinter import messagebox
+
+def show_notification():
+    messagebox.showinfo("Notification", "This is your notification message!")
+
+# Create the main window
+root = tk.Tk()
+root.title("Tkinter Notification Example")
+
+# Set up the button to trigger the notification
+notify_button = tk.Button(root, text="Show Notification", command=show_notification)
+notify_button.pack(pady=20)
+
+# Start the Tkinter event loop
+root.mainloop()
+
+
 #Neural Network , Squiggle, Hidđen layers
 
 #Dosage example
