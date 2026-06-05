@@ -37,6 +37,29 @@ It integrates **AI facial recognition** to enhance security for high-value trans
 
 ---
 
+##📌 AI Training Pipeline
+The project integrates an AI facial recognition system to secure high-value transactions.
+The training pipeline was designed to process real facial datasets and includes the following steps:
+1. Data Collection:
+ + Gathered a dataset of real face images.
+ + Organized into training and validation sets.
+2. Preprocessing:
+ + Applied image resizing and normalization.
+ + Used <mark>Haarcascade</mark> for face detection.
+ + Augmented data to increase variability.
+3. Model Training:
+ + Built a recognition model using <mark>OpenCV (cv2)</mark>.
+ + Trained with supervised learning on facial features.
+ + Monitored training and validation accuracy.
+4. Overfitting Monitoring:
+ + Compared training vs validation performance.
+ + Identified signs of overfitting (high training accuracy but lower validation accuracy).
+ + Adjusted dataset size and preprocessing to mitigate.
+5. Integration:
+ + Connected the trained model with the <mark>Tkinter</mark> banking interface.
+ + Facial recognition triggered for transactions ≥ 10M VND.
+ + Ensured secure flow before transaction approval.
+
 ## 📌 How to Run
 1. Clone the repository:
    ```bash
