@@ -80,5 +80,5 @@ The training pipeline was designed to process real facial datasets and includes 
 ## 📌 Contribution
 Developed by a team of 4 students as part of academic coursework.
 
-##📌 License
+## 📌 License
 This project is for educational purposes only.
